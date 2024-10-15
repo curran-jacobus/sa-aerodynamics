@@ -21,5 +21,5 @@ S_hs = hstab_span * hstab_chordlen
 AR_hs = hstab_span / hstab_chordlen
 oswald_wing = oswald(AR)
 oswald_hs = oswald(AR_hs)
-wing_airfoil_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),wing_airfoil_filename)
-hstab_airfoil_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),hstab_airfoil_filename)
+wing_airfoil_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),'airfoils',wing_airfoil_filename)
+hstab_airfoil_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),'airfoils',hstab_airfoil_filename)
