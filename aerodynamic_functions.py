@@ -1,9 +1,11 @@
 import aircraft_parameters
-import airfoils
 import constants
 
 import math
 import numpy as np
+
+def get_reynolds(airspeed, chordlen):
+    return airspeed*chordlen/constants.kv
 
 def get_best_glide(airfoil_dict, mass= aircraft_parameters.m ,wing_area=aircraft_parameters.S,aspect_ratio=aircraft_parameters.AR,oswald=aircraft_parameters.oswald_wing):
     num = 2*mass*constants.g
@@ -11,7 +13,7 @@ def get_best_glide(airfoil_dict, mass= aircraft_parameters.m ,wing_area=aircraft
     return math.sqrt(num/denom) #analytical minimum of induced+parasite drag eqns
 
 def get_lift(airspeed,airfoil_dict,wing_area=aircraft_parameters.S):
-    lift_force = airfoil_dict["Cl"] * constants.rho * 0.5 * airspeed**2 * wing_area # Lift equation
+    lift_force = airfoil_dict["CL"] * constants.rho * 0.5 * airspeed**2 * wing_area # Lift equation
     return lift_force
 
 def get_drag(airspeed,airfoil_dict,mass=aircraft_parameters.m,wing_area=aircraft_parameters.S,wingspan=aircraft_parameters.wingspan,oswald=aircraft_parameters.oswald_wing):
@@ -54,4 +56,4 @@ def hstab_pos_and_params(wing_airfoil_dict, hstab_airfoil_dict):
         
     cm_hstab = aircraft_parameters.cm_cp * l_ratio #product of forces and moment arms should be equal
     power = get_power(v_min_sink,wing_airfoil_dict, mass=m_eff)
-    return cm_hstab, v_min_sink, m_eff, l_ratio, power
+    return float(cm_hstab), float(v_min_sink), float(m_eff), float(l_ratio), float(power)
