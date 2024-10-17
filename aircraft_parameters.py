@@ -4,8 +4,8 @@ def oswald(AR):
     #https://calculator.academy/oswald-efficiency-factor-calculator/
     return 1.78 * (1- 0.045 * AR**0.68) -0.64
 
-#Defined
-m = 1.5 #mass of aircraft (1.5 kg goal)
+#Chosen
+m = 1.5 #mass of aircraft  NOT INLCUDING WINGS AND HORIZONTAL STABILIZER (1.5 kg goal)
 wingspan = 2.5 #Wingspan (m)
 chordlen = 0.28 #chord length (m)
 hstab_span = 0.7 #horizontal stabilizer span (m)
