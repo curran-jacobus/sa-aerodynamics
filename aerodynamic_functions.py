@@ -57,3 +57,8 @@ def hstab_pos_and_params(wing_airfoil_dict, hstab_airfoil_dict):
     cm_hstab = aircraft_parameters.cm_cp * l_ratio #product of forces and moment arms should be equal
     power = get_power(v_min_sink,wing_airfoil_dict, mass=m_eff)
     return float(cm_hstab), float(v_min_sink), float(m_eff), float(l_ratio), float(power)
+
+def get_solar_panel_power():
+    wing_area= math.floor(aircraft_parameters.wingspan/aircraft_parameters.panel_size)*math.floor(aircraft_parameters.chordlen/aircraft_parameters.panel_size)* aircraft_parameters.panel_size**2
+    hs_area = math.floor(aircraft_parameters.hstab_span/aircraft_parameters.panel_size)*math.floor(aircraft_parameters.hstab_chordlen/aircraft_parameters.panel_size)* aircraft_parameters.panel_size**2
+    return (wing_area+hs_area)*constants.sp_power
