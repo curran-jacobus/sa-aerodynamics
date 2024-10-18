@@ -4,6 +4,8 @@ import pandas as pd
 
 
 def lin_interpolate_CD0(df):
+    #Linear Interpolates Coefficient of Drag for when Coefficient of Lift is 0 (CD0)
+
     # Sort by CL in ascending order to ensure proper interpolation
     df = df.sort_values(by='CL').reset_index(drop=True)
 
@@ -21,6 +23,9 @@ def lin_interpolate_CD0(df):
     return cd_at_cl_zero
 
 def get_CD0_Cl_Cd(airfoil_filepath, reynolds, design_aoa):
+    #Returns three key airfoil parameters in a dictionary
+
+    #Calculate aerodynamic parameters over range of AoA values, saves to dataframe
     aero_data=pd.DataFrame({"Alpha": [], 'CL': [], 'CD': []})
     for aoa in np.linspace(-15,15,121):
         data_alpha = nf.get_aero_from_dat_file(
@@ -31,6 +36,7 @@ def get_CD0_Cl_Cd(airfoil_filepath, reynolds, design_aoa):
         aero_data_row = pd.DataFrame({"Alpha": [aoa], 'CL': [data_alpha["CL"]], 'CD': [data_alpha["CD"]]})
         aero_data=pd.concat([aero_data,aero_data_row])
 
+    #Desired Values Extracted from Data Frame
     CD0 = lin_interpolate_CD0(aero_data)
     CL = aero_data[aero_data['Alpha'] == design_aoa]['CL'].values[0]
     CD = aero_data[aero_data['Alpha'] == design_aoa]['CD'].values[0]
