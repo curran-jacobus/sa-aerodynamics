@@ -35,8 +35,7 @@ def make_flat_airfoil(filename, flatAfterXValue):
 
     # call func to make new .dat file
     newAirfoilName = re.search(r'^(.*?)(?=\.dat)', filename).group(0) + "_" + str(flatAfterXValue) + "_flat"
-    # this re.search will get everything in front of the .dat file not in the directory, which will get the airfoil name
-    
+    # this re.search will get everything in front of the .dat file not in the directory, which will get the airfoil name  
     create_flat_airfoil_file(x_cleaned, y_cleaned, newAirfoilName)
     flat_length = math.sqrt((1 - closest_point[0]) ** 2 + closest_point[1] ** 2)
     return (newAirfoilName + ".dat", flat_length)
@@ -49,4 +48,3 @@ def create_flat_airfoil_file(x_cleaned, y_cleaned, newAirfoilName):
     for i in range(len(x_cleaned)):
         coordinateLine = format(x_cleaned[i], '.5f') + "\t" + format(y_cleaned[i], '.5f')  # round to 5 decimal points
         f.write(coordinateLine + "\n")
-        
