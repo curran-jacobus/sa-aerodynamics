@@ -2,6 +2,7 @@ import neuralfoil as nf
 import numpy as np
 import pandas as pd
 
+
 def lin_interpolate_CD0(df):
     # Sort by CL in ascending order to ensure proper interpolation
     df = df.sort_values(by='CL').reset_index(drop=True)
@@ -19,9 +20,9 @@ def lin_interpolate_CD0(df):
 
     return cd_at_cl_zero
 
-def get_CD0_Cl_Cd(airfoil_filepath, reynolds):
+def get_CD0_Cl_Cd(airfoil_filepath, reynolds, design_aoa):
     aero_data=pd.DataFrame({"Alpha": [], 'CL': [], 'CD': []})
-    for aoa in np.linspace(-15,15,301):
+    for aoa in np.linspace(-15,15,121):
         data_alpha = nf.get_aero_from_dat_file(
             filename=airfoil_filepath,
             alpha=aoa,
@@ -31,6 +32,6 @@ def get_CD0_Cl_Cd(airfoil_filepath, reynolds):
         aero_data=pd.concat([aero_data,aero_data_row])
 
     CD0 = lin_interpolate_CD0(aero_data)
-    CL = aero_data[aero_data['Alpha'] == 0]['CL'].values[0]
-    CD = aero_data[aero_data['Alpha'] == 0]['CD'].values[0]
+    CL = aero_data[aero_data['Alpha'] == design_aoa]['CL'].values[0]
+    CD = aero_data[aero_data['Alpha'] == design_aoa]['CD'].values[0]
     return {"CD0": CD0, "CL": CL, "CD":CD}
