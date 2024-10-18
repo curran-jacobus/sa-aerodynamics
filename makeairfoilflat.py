@@ -14,8 +14,6 @@ def make_flat_airfoil(filename, flatAfterXValue):
     # perform operation on data to get a list of tuples
     
     xy_data = list(zip(data['x'], data['y']))
-    #flatAfterXValue = float(input("Please enter how far along the x-axis (from 0 to 1) the flat surface should start: "))
-    
     upperHalfAirfoilData = [(x, y) for x, y in xy_data if y > 0]  # get only points on the top of the airfoil
     closest_point = max(upperHalfAirfoilData, key=lambda point: (-abs(point[0] - flatAfterXValue), point[1]))
     cleaned_data = [(x, y) for x, y in xy_data if x <= closest_point[0] or y <= 0]
@@ -37,6 +35,8 @@ def make_flat_airfoil(filename, flatAfterXValue):
 
     # call func to make new .dat file
     newAirfoilName = re.search(r'^(.*?)(?=\.dat)', filename).group(0) + "_" + str(flatAfterXValue) + "_flat"
+    # this re.search will get everything in front of the .dat file not in the directory, which will get the airfoil name
+    
     create_flat_airfoil_file(x_cleaned, y_cleaned, newAirfoilName)
     flat_length = math.sqrt((1 - closest_point[0]) ** 2 + closest_point[1] ** 2)
     return flat_length
