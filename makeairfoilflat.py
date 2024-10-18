@@ -39,4 +39,4 @@ def make_flat_airfoil(filename,flatAfterXValue):
         f.write(coordinateLine + "\n")
     
     flat_length = math.sqrt((1-closest_point[0])**2+closest_point[1]**2)
-    return(flat_length)
+    return(outputfilename+".dat",flat_length)

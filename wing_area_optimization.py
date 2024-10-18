@@ -30,10 +30,10 @@ def wing_hstab_area_optimization(chordstep):
     performance_df = pd.DataFrame({"Wingspan":[],"Chordlen":[],"H.S. Span":[],"H.S. Chordlen":[],"Min Power":[],"Prod. Power":[],"Power Ratio":[]})
     wingless_mass = aircraft_parameters.m
 
-    for aircraft_parameters.wingspan in np.arange(start=aircraft_parameters.panel_size*1, stop=aircraft_parameters.panel_size*25,step=aircraft_parameters.panel_size):
+    for aircraft_parameters.wingspan in np.arange(start=aircraft_parameters.panel_size*12, stop=aircraft_parameters.panel_size*25,step=aircraft_parameters.panel_size):
         for aircraft_parameters.chordlen in np.arange(start=chordstep*1, stop=chordstep*4,step=chordstep):
-            for aircraft_parameters.hstab_span in np.arange(start=aircraft_parameters.panel_size*1, stop=aircraft_parameters.panel_size*8,step=aircraft_parameters.panel_size):
-                for aircraft_parameters.hstab_chordlen in np.arange(start=aircraft_parameters.panel_size*1, stop=aircraft_parameters.panel_size*4,step=aircraft_parameters.panel_size):
+            for aircraft_parameters.hstab_span in np.arange(start=aircraft_parameters.panel_size*4, stop=aircraft_parameters.panel_size*10,step=aircraft_parameters.panel_size):
+                for aircraft_parameters.hstab_chordlen in np.arange(start=aircraft_parameters.panel_size*1, stop=aircraft_parameters.panel_size*3,step=aircraft_parameters.panel_size):
                     aircraft_parameters.m = wingless_mass +get_wing_weight(aircraft_parameters.wing_airfoil_filepath,aircraft_parameters.wingspan,aircraft_parameters.chordlen)+get_wing_weight(aircraft_parameters.hstab_airfoil_filepath,aircraft_parameters.hstab_span,aircraft_parameters.hstab_chordlen)
 
                     _,_,_,_,min_power,_,_ = flight_characteristics.get_flight_characteristics()
