@@ -29,7 +29,8 @@ def make_flat_airfoil(filename,flatAfterXValue):
     plt.title("Make Airfoil Flat Script - By Vale R")
     plt.show()
     # Export new .dat file with user input
-    outputfilename = re.search(r'^(.*?)(?=\.dat)',filename)+"_"+str(flatAfterXValue)+"_flat"
+    airfoil = re.search(r'^(.*?)(?=\.dat)',filename).group(0)
+    outputfilename = airfoil+"_"+str(flatAfterXValue)+"_flat"
     newFileName = "airfoils/" + outputfilename + ".dat"
     f = open(newFileName, "w")
     f.write(outputfilename + "\n\n")
