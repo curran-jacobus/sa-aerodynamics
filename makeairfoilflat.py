@@ -39,7 +39,7 @@ def make_flat_airfoil(filename, flatAfterXValue):
     
     create_flat_airfoil_file(x_cleaned, y_cleaned, newAirfoilName)
     flat_length = math.sqrt((1 - closest_point[0]) ** 2 + closest_point[1] ** 2)
-    return flat_length
+    return (newAirfoilName + ".dat", flat_length)
 
 # Export new .dat file with user input
 def create_flat_airfoil_file(x_cleaned, y_cleaned, newAirfoilName):
