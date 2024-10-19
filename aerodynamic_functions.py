@@ -63,8 +63,8 @@ def hstab_pos_and_params(wing_airfoil_dict, hstab_airfoil_dict):
     power = get_power(v_min_sink,wing_airfoil_dict, mass=m_eff)
     return float(cm_hstab), float(v_min_sink), float(m_eff), float(l_ratio), float(power)
 
-def get_solar_panel_power():
+def get_solar_panel_power(chord_step):
     #Calculates solar panel power (W) based on wing area and constant solar incidence
-    wing_area= math.floor(aircraft_parameters.wingspan/aircraft_parameters.panel_size)*math.floor(aircraft_parameters.chordlen/aircraft_parameters.panel_size)* aircraft_parameters.panel_size**2
+    wing_area= math.floor(aircraft_parameters.wingspan/aircraft_parameters.panel_size)*math.floor(aircraft_parameters.chordlen/chord_step)* aircraft_parameters.panel_size**2
     hs_area = math.floor(aircraft_parameters.hstab_span/aircraft_parameters.panel_size)*math.floor(aircraft_parameters.hstab_chordlen/aircraft_parameters.panel_size)* aircraft_parameters.panel_size**2
     return (wing_area+hs_area)*constants.sp_power
