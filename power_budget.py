@@ -1,4 +1,4 @@
-from aerodynamic_functions import get_reynolds
+from Core_Functions.aerodynamic_functions import get_reynolds
 import json
 
 # Specify the path to your JSON file

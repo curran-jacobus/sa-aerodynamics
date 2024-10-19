@@ -2,11 +2,12 @@ import numpy as np
 import pandas as pd
 import re
 import shapely
+import os
 
-import flight_characteristics
-import aircraft_parameters
-import aerodynamic_functions
-import constants
+import Core_Functions.flight_characteristics
+import Core_Functions.aircraft_parameters
+import Core_Functions.aerodynamic_functions
+import Core_Functions.constants
 
 def get_wing_weight(airfoilfile, wingspan, chordlen):
     #Get Airfoil Cross Sectional Area from .dat file using shapely package
@@ -59,5 +60,5 @@ def wing_hstab_area_optimization(chordstep):
     wing_airfoil = re.search(r"(.*)(?=\.dat)",aircraft_parameters.wing_airfoil_filename).group(0)
     hstab_airfoil = re.search(r"(.*)(?=\.dat)",aircraft_parameters.hstab_airfoil_filename).group(0)
     csv_filename = wing_airfoil+'_'+hstab_airfoil+"_Area_Optimization.csv"
-    performance_df.to_csv(csv_filename)
+    performance_df.to_csv(os.join(__file__,'Optimization_Outputs',csv_filename))
     return performance_df
