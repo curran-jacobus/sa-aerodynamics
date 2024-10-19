@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import re
 import shapely
+import os
 
 import flight_characteristics
 import aircraft_parameters
@@ -39,6 +40,7 @@ def wing_hstab_area_optimization(chordstep):
                     #Calculate Power Requirements and Outputs
                     _,_,_,_,min_power,_,_ = flight_characteristics.get_flight_characteristics()
                     produced_power = aerodynamic_functions.get_solar_panel_power()
+                    print(produced_power)
                     
                     #Ratio of produced power from panels to power reqd to maintain altitude. this is selected for
                     power_ratio = produced_power/min_power
@@ -50,6 +52,6 @@ def wing_hstab_area_optimization(chordstep):
     #Get Airfoil Names Using Regex, save to .csv file with airfoils as filename.
     wing_airfoil = re.search(r"(.*)(?=\.dat)",aircraft_parameters.wing_airfoil_filename)
     hstab_airfoil = re.search(r"(.*)(?=\.dat)",aircraft_parameters.hstab_airfoil_filename)
-    csv_filename = wing_airfoil+'_'+hstab_airfoil+"_Area_Optimization.csv"
+    csv_filename = os.path.join("Downloads", wing_airfoil + '_' + hstab_airfoil + "_Area_Optimization.csv")
     performance_df.to_csv(csv_filename)
     return performance_df
