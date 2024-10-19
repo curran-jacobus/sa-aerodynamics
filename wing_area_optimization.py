@@ -30,10 +30,10 @@ def wing_hstab_area_optimization(chordstep):
     wingless_mass = aircraft_parameters.m
 
     #Iterate over reasonable wingspans, chordlenths for wing and horizontal stabilizer in solar-panel sized increments
-    for aircraft_parameters.wingspan in np.arange(start=aircraft_parameters.panel_size*12, stop=aircraft_parameters.panel_size*25,step=aircraft_parameters.panel_size):
+    for aircraft_parameters.wingspan in np.arange(start=aircraft_parameters.panel_size*17, stop=aircraft_parameters.panel_size*23,step=aircraft_parameters.panel_size):
         for aircraft_parameters.chordlen in np.arange(start=chordstep*1, stop=chordstep*4,step=chordstep):
-            for aircraft_parameters.hstab_span in np.arange(start=aircraft_parameters.panel_size*4, stop=aircraft_parameters.panel_size*10,step=aircraft_parameters.panel_size):
-                for aircraft_parameters.hstab_chordlen in np.arange(start=aircraft_parameters.panel_size*1, stop=aircraft_parameters.panel_size*3,step=aircraft_parameters.panel_size):
+            for aircraft_parameters.hstab_span in np.arange(start=aircraft_parameters.panel_size*4, stop=aircraft_parameters.panel_size*8,step=aircraft_parameters.panel_size):
+                for aircraft_parameters.hstab_chordlen in np.arange(start=aircraft_parameters.panel_size*1, stop=aircraft_parameters.panel_size*2,step=aircraft_parameters.panel_size):
                     aircraft_parameters.m = wingless_mass +get_wing_weight(aircraft_parameters.wing_airfoil_filepath,aircraft_parameters.wingspan,aircraft_parameters.chordlen)+get_wing_weight(aircraft_parameters.hstab_airfoil_filepath,aircraft_parameters.hstab_span,aircraft_parameters.hstab_chordlen)
 
                     #Calculate Power Requirements and Outputs
@@ -45,6 +45,7 @@ def wing_hstab_area_optimization(chordstep):
                     
                     #make dataframe row, append to dataframe
                     performance_df_row = pd.DataFrame({"Wingspan":[aircraft_parameters.wingspan],"Chordlen":[aircraft_parameters.chordlen],"H.S. Span":[aircraft_parameters.hstab_span],"H.S. Chordlen":[aircraft_parameters.hstab_chordlen],"Min Power":[min_power],"Prod. Power":[produced_power],"Power Ratio":[power_ratio]})
+                    print(performance_df_row)
                     performance_df = pd.concat([performance_df,performance_df_row])
     
     #Get Airfoil Names Using Regex, save to .csv file with airfoils as filename.

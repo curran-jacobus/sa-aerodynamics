@@ -27,7 +27,7 @@ def get_CD0_Cl_Cd(airfoil_filepath, reynolds, design_aoa):
 
     #Calculate aerodynamic parameters over range of AoA values, saves to dataframe
     aero_data=pd.DataFrame({"Alpha": [], 'CL': [], 'CD': []})
-    for aoa in np.linspace(-15,15,121):
+    for aoa in np.arange(-15,15,0.5):
         data_alpha = nf.get_aero_from_dat_file(
             filename=airfoil_filepath,
             alpha=aoa,
@@ -35,7 +35,6 @@ def get_CD0_Cl_Cd(airfoil_filepath, reynolds, design_aoa):
             model_size='xlarge')
         aero_data_row = pd.DataFrame({"Alpha": [aoa], 'CL': [data_alpha["CL"]], 'CD': [data_alpha["CD"]]})
         aero_data=pd.concat([aero_data,aero_data_row])
-
     #Desired Values Extracted from Data Frame
     CD0 = lin_interpolate_CD0(aero_data)
     CL = aero_data[aero_data['Alpha'] == design_aoa]['CL'].values[0]
