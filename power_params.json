@@ -1,13 +1,5 @@
 [
-    {
-        "component": "Motor",
-        "voltage": 20.00,
-        "current": 40.00,
-        "duty cycle": 60,
-        "contingency": 10,
-        "mass": 0.2,
-        "count": 1
-    },
+    
     {
         "component": "ESC",
         "voltage": 5.00,
@@ -25,7 +17,6 @@
         "contingency": 10,
         "mass": 0.1, 
         "count": 1
-
     },
     {
         "component": "GPS Receiver",

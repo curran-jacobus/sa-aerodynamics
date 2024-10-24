@@ -3,6 +3,7 @@ import constants
 
 import math
 import numpy as np
+import optimize_power_budget
 
 def get_reynolds(airspeed, chordlen):
     #Returns Reynolds Number of Airflow Around Wing

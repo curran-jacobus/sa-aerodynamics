@@ -40,7 +40,7 @@ def wing_hstab_area_optimization(chordstep):
                     #Calculate Power Requirements and Outputs
                     _,_,_,_,min_power,_,_ = flight_characteristics.get_flight_characteristics()
                     produced_power = aerodynamic_functions.get_solar_panel_power()
-                    print(produced_power)
+    
                     
                     #Ratio of produced power from panels to power reqd to maintain altitude. this is selected for
                     power_ratio = produced_power/min_power
