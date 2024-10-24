@@ -1,5 +1,5 @@
-import aerodynamic_functions
-import aircraft_parameters
+from Core_Functions import aerodynamic_functions
+from Core_Functions import aircraft_parameters
 import airfoils
 
 

@@ -1,5 +1,5 @@
-import aircraft_parameters
-import constants
+from Core_Functions import aircraft_parameters
+from Core_Functions import constants
 
 import math
 import numpy as np

@@ -4,10 +4,10 @@ import re
 import shapely
 import os
 
-import Core_Functions.flight_characteristics
-import Core_Functions.aircraft_parameters
-import Core_Functions.aerodynamic_functions
-import Core_Functions.constants
+import Core_Functions.flight_characteristics as flight_characteristics
+import Core_Functions.aircraft_parameters as aircraft_parameters
+import Core_Functions.aerodynamic_functions as aerodynamic_functions
+import Core_Functions.constants as constants
 
 def get_wing_weight(airfoilfile, wingspan, chordlen):
     #Get Airfoil Cross Sectional Area from .dat file using shapely package
