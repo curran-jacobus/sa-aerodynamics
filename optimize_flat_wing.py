@@ -1,6 +1,6 @@
 import wing_area_optimization
-import makeairfoilflat
-import aircraft_parameters
+from Core_Functions import makeairfoilflat
+from Core_Functions import aircraft_parameters
 
 import os
 
