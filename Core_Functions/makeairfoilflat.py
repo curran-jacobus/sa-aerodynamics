@@ -78,8 +78,9 @@ def make_flat_airfoil(filename, flatAfterXValue):
 def create_flat_airfoil_file(x_cleaned, y_cleaned, newAirfoilName):
     newFileName = "airfoils/" + newAirfoilName + ".dat"
     f = open(newFileName, "w")
-    f.write(newAirfoilName + "\n\n")
+    f.write("# " + newAirfoilName + "\n\n")  # add hash to first line to limit XFOIL errors
     for i in range(len(x_cleaned)):
-        coordinateLine = format(x_cleaned[i], '.5f') + "\t" + format(y_cleaned[i], '.5f')  # round to 5 decimal points
+        coordinateLine = format(x_cleaned[i], '.5f') + " " + format(y_cleaned[i], '.5f')  # round to 5 decimal points
+        # X and Y coordinates will be deliminated by " " character.
         f.write(coordinateLine + "\n")
 
