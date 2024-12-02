@@ -8,4 +8,4 @@ for i in range(100,0,-5):
     testMission.addChangeSpeed(throttle=i)
 
 testMission.exportqgc("mission.plan")
-testMission.export("/Users/ConnorHoffman/Downloads/missiontxt.txt")
+testMission.export("~/Downloads/missiontxt.txt")
