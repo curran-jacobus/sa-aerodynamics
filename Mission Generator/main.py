@@ -8,5 +8,5 @@ for i in range(100,0,-5):
     testMission.addLoiterTurns(numOfTurns=2,radius=200)
     testMission.addChangeSpeed(throttle=i)
 
-testMission.exportqgc("mission.plan")
+testMission.exportqgc("fixed_throttle_loiter_turns.plan")
 testMission.export("~/Downloads/missiontxt.txt")

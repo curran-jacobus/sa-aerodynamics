@@ -70,12 +70,12 @@ class Mission:
 
     # exports the mission object to the specified file path. must specify file name, but should automatically
     # put in the QGC directory on a user's computer
-    def exportqgc(self, filename, folderpath="/Users/ConnorHoffman/Documents/QGroundControl/Missions"):
+    def exportqgc(self, filename, folderpath="~/Documents/QGroundControl/Missions"):
         # filename also supports .mission, .txt (compatibility with Mission Planner), .waypoints
         self.updateJumpIDs()
 
         # no folder path or file name validation, should add try except in future or santize inputs
-        with open(os.path.join(folderpath, filename), "w", encoding='utf-8') as file:
+        with open(os.path.expanduser(os.path.join(folderpath, filename)), "w", encoding='utf-8') as file:
             # exports to valid JSON, since a Python dictionary and JSON are not identical
             json.dump(self.mission, file, ensure_ascii=False, indent=4)
 
@@ -88,7 +88,7 @@ class Mission:
 
         # no folder path or file name validation, should add try except in future or santize inputs
         # SHOULD BE FILE TYPE .txt FOR MAXIMUM COMPATIBILITY
-        with open(filepath, "w") as file:
+        with open(os.path.expanduser(filepath), "w") as file:
             file.write("QGC WPL 110\n") # header
 
             # sets home waypoint, starts every mission
