@@ -70,7 +70,8 @@ class Mission:
         # the correct item to jump to
 
         for i in range(0, len(self.mission["mission"]["items"])):
-            self.mission["mission"]["items"][i]["doJumpId"] = i + 1 # start at 1 because 0th item is home location
+            # start at 1 because 0th item is home location, DO NOT USE 0 FOR JUMP ID
+            self.mission["mission"]["items"][i]["doJumpId"] = i + 1
 
     # exports the mission object to the specified file path. must specify file name, but should automatically
     # put in the QGC directory on a user's computer
