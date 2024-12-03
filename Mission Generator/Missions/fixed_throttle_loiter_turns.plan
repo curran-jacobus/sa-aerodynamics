@@ -771,6 +771,44 @@
                     0
                 ],
                 "type": "SimpleItem"
+            },
+            {
+                "AMSLAltAboveTerrain": null,
+                "Altitude": 49,
+                "AltitudeMode": 1,
+                "autoContinue": true,
+                "command": 178,
+                "doJumpId": 41,
+                "frame": 2,
+                "params": [
+                    1,
+                    -1,
+                    70,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "type": "SimpleItem"
+            },
+            {
+                "AMSLAltAboveTerrain": null,
+                "Altitude": 49,
+                "AltitudeMode": 1,
+                "autoContinue": true,
+                "command": 17,
+                "doJumpId": 42,
+                "frame": 3,
+                "params": [
+                    0,
+                    0,
+                    10,
+                    null,
+                    37.422321,
+                    -122.176101,
+                    49
+                ],
+                "type": "SimpleItem"
             }
         ],
         "plannedHomePosition": [

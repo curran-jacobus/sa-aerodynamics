@@ -1,8 +1,12 @@
 # TODO:
-#   - add a units flag in the initialization. If user is using feet, automatically convert stuff from ft to m
-#   - add feature to load in a QGC or txt file as a Python dictionary, to allow conversion between files and editing
+#   - add a units flag in the initialization. If user is using feet, automatically convert stuff
+#       from ft to m
+#   - add feature to load in a QGC or txt file as a Python dictionary, to allow conversion between
+#       files and editing
 #   - add feature to edit or remove items from a Mission object
 #   - add all MAVlink mission commands from common.xml
+#   - add a feature that allows easy reading of missions, pretty print for missions so someone knows
+#       what a mission does without QGC and parsing the JSON
 
 import os
 import json
@@ -168,6 +172,36 @@ class Mission:
                         0, # I don't know what this one is, Mission Planner sets it to 5, which is out of range
                         radius, # if positive, clockwise. negative, counter-clockwise
                         None,  # changed from JSON "null". thought-provoking parameter
+                        latitude,
+                        longitude,
+                        altitude
+                    ],
+                    "type": "SimpleItem"  # complexItems are QGC specific, documentation in provided link
+                    }
+
+        self.addItem(item)
+
+    # performs loiter forever
+    # MAV_CMD_NAV_LOITER_UNLIM (17)
+    # same with defaults above, easiest to edit these parameters in QGC so defaults posted here
+    def addLoiter(self, latitude=defaultLatitude, longitude=defaultLongitude,
+                       radius=10, altitude=-1):
+        # if no altitude specified, go with default
+        if altitude == -1:
+            altitude = self.defaultAltitude
+
+        item = {"AMSLAltAboveTerrain": None,  # changed from "null". Altitude shown to user
+                    "Altitude": altitude,
+                    "AltitudeMode": self.globalPlanAltitudeMode,  # seems to stay fixed for all items
+                    "autoContinue": True,  # changed from JSON "true"
+                    "command": 17,  # MAV_CMD, indicates the intended MAVLink command
+                    "doJumpId": 0,  # command identifier, for DO_JUMP and similar. Default to zero, updateJumpIDs will change
+                    "frame": 3,  # MAV_FRAME, 2 = mission command, 3 = coordinate relative to home position
+                    "params": [
+                        0,
+                        0,
+                        radius, # if positive, clockwise. negative, counter-clockwise
+                        None,  # changed from JSON "null". yaw angle
                         latitude,
                         longitude,
                         altitude
