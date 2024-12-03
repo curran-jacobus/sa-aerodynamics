@@ -2,6 +2,7 @@
 #   - add a units flag in the initialization. If user is using feet, automatically convert stuff from ft to m
 #   - add feature to load in a QGC or txt file as a Python dictionary, to allow conversion between files and editing
 #   - add feature to edit or remove items from a Mission object
+#   - add all MAVlink mission commands from common.xml
 
 import os
 import json

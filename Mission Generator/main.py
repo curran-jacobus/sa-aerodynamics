@@ -1,5 +1,6 @@
 import mission
 
+# example mission
 testMission = mission.Mission()
 
 # build waypoint that starts at 100% throttle, does two laps, decreased throttle by 5%, and repeats
