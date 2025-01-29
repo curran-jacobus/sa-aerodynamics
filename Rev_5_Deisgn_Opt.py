@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import neuralfoil as nf
 import aerosandbox as asb
+import os
 
 import core_functions.constants as constants
 
@@ -12,14 +13,14 @@ class plane_values:
     def __init__(self, csv_file):
         self._load_params(csv_file)
         self._load_opti_vars(csv_file)
-        self._calc_CD0_regression()
+        #self._calc_CD0_regression()
 
     def _load_params(self, csv_file):
         with open(csv_file, mode='r') as file:
             reader = csv.reader(file)
             for row in reader:
                 name, type, value, min, max = row
-                if type.strip == 'p':
+                if type == 'p':
                     setattr(self, name.strip(), float(value.strip()))
 
     def _load_opti_vars(self, csv_file):
@@ -27,8 +28,8 @@ class plane_values:
             reader = csv.reader(file)
             for row in reader:
                 name, type, value, min, max = row
-                if type.strip == 'v':
-                    setattr(opti, name.strip(), opti.variable(init_guess=float(value), lower_bound=float(min), upper_bound= float(max)))
+                if type == 'v':
+                    setattr(self, name.strip(), opti.variable(init_guess=float(value), lower_bound=float(min), upper_bound= float(max)))
 
     def _calc_CD0_regression(self, re_list=np.linspace(1e5,1e6,10)):
         def fit_power_law(x, y):
@@ -102,6 +103,5 @@ class plane_values:
         self.cd0_prefactor =  prefactor
         self.cd0_expofactor = expofactor
         
-p = plane_values("csvfile") #update CSV File Here
-attrs = vars(p)
-print(', '.join("%s: %s" % item for item in attrs.items()))       
+p = plane_values(os.path.join(os.getcwd(),'plane_csvs',"variable_loading_test.csv")) #update CSV File Here
+
