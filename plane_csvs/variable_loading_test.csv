@@ -2,3 +2,4 @@
 chordlen,p,0.4,,
 airspeed,v,10,0,30
 wingaoa,v,3,0,5
+airfoil,p,ag35.dat,,
