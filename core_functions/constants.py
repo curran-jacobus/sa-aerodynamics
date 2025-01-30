@@ -10,5 +10,5 @@ foam_density = 30.2# Pink Insulation Foam Density kg/m^3
 solar_panel_mass = 0.001 #Mass (kg) per solar panel (incl solder)
 solar_panel_size = 0.125 #solar panel size (m)
 stanford_latitude = 37.43
-sp_efficiency = 0.14
+sp_efficiency = 0.14 #VERIFY WITH EZZAT
 

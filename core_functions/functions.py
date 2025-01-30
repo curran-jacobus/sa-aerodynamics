@@ -1,6 +1,4 @@
 #Functions
-
-
 import constants
 
 import pandas as pd

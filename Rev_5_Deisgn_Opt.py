@@ -7,6 +7,7 @@ import os
 
 import core_functions.constants as constants
 
+csv_file = os.path.join(os.getcwd(),'plane_csvs',"variable_loading_test.csv") #Update this per optimization
 
 opti=asb.Opti()
 
@@ -39,5 +40,5 @@ class plane_values:
         self.cd0_prefactor = match_row.iloc[0,1]
         self.cd0_expofactor = match_row.iloc[0,2]
 
-plane = plane_values(os.path.join(os.getcwd(),'plane_csvs',"variable_loading_test.csv")) #update CSV File Here
+plane = plane_values(csv_file) #update CSV File Here
 
