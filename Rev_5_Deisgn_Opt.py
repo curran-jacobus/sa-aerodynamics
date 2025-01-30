@@ -9,6 +9,8 @@ import core_functions.constants as constants
 
 
 opti=asb.Opti()
+
+#Import Aircraft-Dependent Paramters and Variables as Class Attribtutes
 class plane_values:
     def __init__(self, csv_file):
         self._load_params(csv_file)
@@ -38,3 +40,4 @@ class plane_values:
         self.cd0_expofactor = match_row.iloc[0,2]
 
 plane = plane_values(os.path.join(os.getcwd(),'plane_csvs',"variable_loading_test.csv")) #update CSV File Here
+
