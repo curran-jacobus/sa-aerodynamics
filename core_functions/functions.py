@@ -6,6 +6,7 @@ from climlab.solar.insolation import daily_insolation
 import os
 import numpy as np
 import csv
+import shapely
 
 def get_solar_insolation(csv_file):
     with open(os.path.join(os.getcwd(),'..','plane_csvs',csv_file),mode='r') as params:
@@ -16,8 +17,6 @@ def get_solar_insolation(csv_file):
     average_solar_insolation = daily_insolation(constants.stanford_latitude, day_of_year)
     captured_energy = average_solar_insolation * constants.sp_efficiency
     return(captured_energy)
-
-
 
 def get_solar_panel_power_weight(csv_file, airfoil, wing_span):
     panels = wing_span/constants.solar_panel_size*get_upper_camber(airfoil)/constants.solar_panel_size
@@ -52,3 +51,19 @@ def get_upper_camber(airfoil):
     # Sum all distances to get the upper camber length
     upper_camber_length = np.sum(dist_array)
     return(upper_camber_length)
+
+def get_foam_wing_weight(airfoil, wingspan, chordlen):
+    def get_airfoil_area(airfoil):
+        df = pd.read_csv(os.path.join(os.getcwd(),'..',"airfoils", airfoil), sep='\s+', skiprows=1, header=None, names=['x', 'y'])
+        df['x'] = df['x']
+        df['y'] = df['y'] 
+        coordinates = list(df.itertuples(index=False, name=None))
+        cross_section_shape = shapely.Polygon(coordinates)
+        cross_sectional_area= cross_section_shape.area
+        return(cross_sectional_area)
+    
+    wing_volume = get_airfoil_area(airfoil) * chordlen**2 * wingspan
+    foam_weight = wing_volume * constants.g
+    spar_weight =  constants.wingspar_linear_density * wingspan * constants.g
+
+    return (foam_weight+spar_weight)
