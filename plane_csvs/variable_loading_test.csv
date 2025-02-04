@@ -1,13 +1,13 @@
-﻿span,p,1.5,,
+﻿span,v,1.5,1,2
 hstab_span,p,0.5,,
-chordlen,p,0.4,,
+chordlen,v,0.4,0.2,0.6
 airspeed,v,10,0,30
 wingaoa,p,3,0,5
 airfoil,p,ag35,,
 testflight_day,p,35,,
 CG_LE_dist,p,0.03,0,0.06
-LE_HstabLE_Dist,p, 1.1,1.0,1.6
-LE_VstabLE_Dist,p, 1.1,1.0, 1.6
+LE_HstabLE_Dist,p,1.1,1.0,1.6
+LE_VstabLE_Dist,p,1.1,1.0,1.6
 HstabLE_VstabLE_offset,p,0.1,,
 wing_aoa,p,3,0,5
 hstab_aoa,p,-2,-5,0
@@ -16,3 +16,7 @@ vstab_chordlen,p,0.15,,
 vstab_height,p,0.2,,
 hstab_airfoil,p,naca0010,,
 vstab_airfoil,p,naca0010,,
+fuselage_cd,p,1,,
+fuselage_frontal_area,p,0.005,,
+weight,p,30,0,0
+num_solar_cells,p,12,,

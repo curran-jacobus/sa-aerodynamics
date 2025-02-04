@@ -1,5 +1,5 @@
 #Functions
-import constants
+from . import constants
 
 import pandas as pd
 from climlab.solar.insolation import daily_insolation
@@ -14,7 +14,7 @@ def get_solar_insolation(csv_file):
         for row in reader:
             if row[0] == "testflight_day":
                 day_of_year = row[2]
-    average_solar_insolation = daily_insolation(constants.stanford_latitude, day_of_year)
+    average_solar_insolation = daily_insolation(constants.stanford_latitude, int(day_of_year))
     captured_energy = average_solar_insolation * constants.sp_efficiency
     return(captured_energy)
 
@@ -52,18 +52,5 @@ def get_upper_camber(airfoil):
     upper_camber_length = np.sum(dist_array)
     return(upper_camber_length)
 
-def get_foam_wing_weight(airfoil, wingspan, chordlen):
-    def get_airfoil_area(airfoil):
-        df = pd.read_csv(os.path.join(os.getcwd(),'..',"airfoils", airfoil), sep='\s+', skiprows=1, header=None, names=['x', 'y'])
-        df['x'] = df['x']
-        df['y'] = df['y'] 
-        coordinates = list(df.itertuples(index=False, name=None))
-        cross_section_shape = shapely.Polygon(coordinates)
-        cross_sectional_area= cross_section_shape.area
-        return(cross_sectional_area)
-    
-    wing_volume = get_airfoil_area(airfoil) * chordlen**2 * wingspan
-    foam_weight = wing_volume * constants.g
-    spar_weight =  constants.wingspar_linear_density * wingspan * constants.g
-
-    return (foam_weight+spar_weight)
+def oswald(aspect_ratio):
+    return 1.78 * (1-(0.045 * aspect_ratio**0.68))-0.64
